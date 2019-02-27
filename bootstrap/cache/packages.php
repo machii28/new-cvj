@@ -13,6 +13,13 @@
       0 => 'Fideloper\\Proxy\\TrustedProxyServiceProvider',
     ),
   ),
+  'laravel-frontend-presets/argon' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'LaravelFrontendPresets\\ArgonPreset\\ArgonPresetServiceProvider',
+    ),
+  ),
   'laravel/nexmo-notification-channel' => 
   array (
     'providers' => 
