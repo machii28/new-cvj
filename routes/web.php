@@ -12,7 +12,7 @@
 */
 
 
-Route::get('/', 'PagesController@home');
+//Route::get('/', 'PagesController@home');
 Route::get('/about', 'PagesController@about');
 Route::get('/contact', 'PagesController@contact');
 
@@ -32,12 +32,20 @@ Route::get('/contact', 'PagesController@contact');
 // });
 Auth::routes();
 
+Route::get('/', 'HomeController@index')->name('home');
+
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['middleware' => 'auth'], function () {
 	Route::resource('user', 'UserController', ['except' => ['show']]);
+
 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);
+
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
+	
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
+
+Route::get('/events', 'EventsController@index')->name('events');
+
 });
 

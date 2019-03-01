@@ -10,10 +10,10 @@ class PagesController extends Controller
     //
     public function home()
     {
-	    return view('home', [
-	    	'foo' => 'Caterie Yo'
-	    	'tasks' => ['work at home', 'work at school', 'work anywhere']
-	    ]);
+	    return view('home')->with([
+            'foo' => 'Caterie Yo',
+            'tasks' => ['task 1', 'task2', 'task3']
+        ]);
 
     }
 
