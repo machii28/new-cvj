@@ -146,7 +146,7 @@
                                                 </a>
                                             </div>
                                         </div>
-                                        {{-- <a class="btn btn-sm btn-primary" href="inventory/{{ $i->itemId }}/edit"> Replenish Item </a> --}}
+                                        {{-- <a class="btn btn-sm btn-primary" href="inventory/{{ $i->itemId }}/edit"> Replenish Item </a> --}}.
                                     </td>
                                 </tr>
                                 @endif
