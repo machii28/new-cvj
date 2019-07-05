@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+<<<<<<< HEAD
 use App\events;
 use App\inventory;
 use App\categoryRef;
@@ -92,5 +93,28 @@ class EventsController extends Controller
     public function destroy($id)
     {
         //
+=======
+
+class EventsController extends Controller
+{
+     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
+     * Show the events page.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function index()
+    {
+        return view('eventsDash');
+>>>>>>> 05ea29b3dced9d73d915557c11c02f485bb90139
     }
 }

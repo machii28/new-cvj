@@ -86,6 +86,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
+<<<<<<< HEAD
                     <a class="nav-link" href="{{ url('events') }}">
                         <i class="ni ni-calendar-grid-58 text-yellow"></i> {{ __('Events') }}
                     </a>
@@ -132,6 +133,17 @@
                     </a>
                 </li> -->
                 
+=======
+                    <a class="nav-link" href="{{ route('events') }}">
+                        <i class="ni ni-calendar-grid-58 text-yellow"></i> {{ __('Events') }}
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('user.index') }}">
+                        <i class="ni ni-collection text-red"></i> {{ __('Inventory Management') }}
+                    </a>
+                </li>
+>>>>>>> 05ea29b3dced9d73d915557c11c02f485bb90139
                 <li class="nav-item">
                     <a href="http://cvj.test:3000/logout" class="nav-link" onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();">
@@ -141,9 +153,15 @@
                 </li>
             </ul>
             <!-- Divider -->
+<<<<<<< HEAD
             {{-- <hr class="my-3"> 
             <!-- Heading -->
             <h6 class="navbar-heading text-muted">Navbar Heading Text</h6> --}}
+=======
+            <hr class="my-3"> 
+            <!-- Heading -->
+            <h6 class="navbar-heading text-muted">Navbar Heading Text</h6>
+>>>>>>> 05ea29b3dced9d73d915557c11c02f485bb90139
             <!-- Navigation -->
             
         </div>
