@@ -3,10 +3,10 @@
         <div class="header-body text-center mb-7">
             <div class="row justify-content-center">
                 <div class="col-lg-5 col-md-6">
-                    <h1 class="text-white">{{ __('Welcome!') }}</h1>
-                    <p class="text-lead text-light">
-                        {{ __('Use these awesome forms to login or create new account in your project for free.') }}
-                    </p>
+                    {{-- <h1 class="text-white">{{ __('Welcome to Caterie!') }}</h1> --}}
+                    {{-- <p class="text-lead text-light">
+                        {{ __('Please input your ceredentials.') }}
+                    </p> --}}
                 </div>
             </div>
         </div>

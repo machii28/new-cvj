@@ -1,3 +1,5 @@
+<link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+
 <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main">
     <div class="container-fluid">
         <!-- Toggler -->
@@ -48,7 +50,7 @@
             </li>
         </ul>
         <!-- Collapse -->
-        <div class="collapse navbar-collapse" id="sidenav-collapse-main">
+        <div class="collapse navbar-collapse w3-animate-left" id="sidenav-collapse-main">
             <!-- Collapse header -->
             <div class="navbar-collapse-header d-md-none">
                 <div class="row">
@@ -88,11 +90,48 @@
                         <i class="ni ni-calendar-grid-58 text-yellow"></i> {{ __('Events') }}
                     </a>
                 </li>
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a class="nav-link" href="{{ url('inventory') }}">
                         <i class="ni ni-collection text-red"></i> {{ __('Inventory Management') }}
                     </a>
+                </li> --}}
+                <li class="nav-item">
+                    <a class="nav-link" href="#navbar-dashboards" data-toggle="collapse" role="" aria-expanded="false" aria-controls="">
+                        <i class="ni ni-collection text-red"></i>
+                        <span class="nav-link-text">Manage Inventory</span>
+                    </a>
+                    <div class="collapse" id="navbar-dashboards" style>
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a href="{{ url('inventory') }}" class="nav-link">
+                                        <i class="ni ni-bullet-list-67 text-blue"></i>View Inventory</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ url('deploy') }}" class="nav-link">
+                                    <i class="ni ni-delivery-fast text-green"></i> Deploy Inventory</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ url('inventory/return') }}" class="nav-link">
+                                    <i class="ni ni-archive-2 text-purple"></i>Inventory Return</a>
+                            </li>
+                            {{-- <li class="nav-item">
+                                <a href="{{ url('inventory/create') }}" class="nav-link">
+                                Add to Inventory</a>
+                            </li> --}}
+                            {{-- <li class="nav-item">
+                                <a href="/inventory" class="nav-link">
+                                Alternative
+                                </a>
+                            </li> --}}
+                        </ul>
+                    </div>
                 </li>
+                <!-- <li class="nav-item">
+                    <a class="nav-link" href="{{ url('inventory/create') }}">
+                        <i class="ni ni-collection text-red"></i> {{ __('Add Inventory') }}
+                    </a>
+                </li> -->
+                
                 <li class="nav-item">
                     <a href="http://cvj.test:3000/logout" class="nav-link" onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();">
@@ -102,9 +141,9 @@
                 </li>
             </ul>
             <!-- Divider -->
-            <hr class="my-3"> 
+            {{-- <hr class="my-3"> 
             <!-- Heading -->
-            <h6 class="navbar-heading text-muted">Navbar Heading Text</h6>
+            <h6 class="navbar-heading text-muted">Navbar Heading Text</h6> --}}
             <!-- Navigation -->
             
         </div>

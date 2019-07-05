@@ -2,6 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\inventory;
+use App\categoryRef;
+use Illuminate\Support\Facades\DB;
+use App\Http\Requests;
+use Carbon\Carbon;
+use Faker\Generator as Faker;
+
 class HomeController extends Controller
 {
     /**
@@ -17,10 +26,19 @@ class HomeController extends Controller
     /**
      * Show the application dashboard.
      *
-     * @return \Illuminate\View\View
+     * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
     {
-        return view('dashboard');
+        $event = DB::table('event')->get();
+        $venue = DB::table('reserve_venue')->get();
+
+        $joinedTable = DB::table('event')
+        ->select('*')
+        ->join('reserve_venue','reserve_venue.reservation_id','=','event.reservation_id')
+        ->get();
+
+        return view('inventoryDashboard', ['events' => $joinedTable]);
+        
     }
 }

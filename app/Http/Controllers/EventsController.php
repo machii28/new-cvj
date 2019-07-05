@@ -4,6 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\events;
+use App\inventory;
+use App\categoryRef;
+use Illuminate\Support\Facades\DB;
+use App\Http\Requests;
+use Carbon\Carbon;
+use Faker\Generator as Faker;
+use Spatie\GoogleCalendar\Event;
 
 class EventsController extends Controller
 {
@@ -14,7 +22,10 @@ class EventsController extends Controller
      */
     public function index()
     {
-        return view('eventsDash');
+        
+        $event = Event::get();
+        return view('eventsDash', ['events' => $event]);
+    
     }
 
     /**

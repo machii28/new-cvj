@@ -12,6 +12,6 @@ class inventory extends Model
     public $table = 'inventory';
     public $timestamps = false;
     public $fillable = [
-    	'itemName', 'category','quantity'
+    	'itemName', 'category','quantity', 'sku', 'date_created', 'last_modified'
     ];
 }

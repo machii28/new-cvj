@@ -1,4 +1,4 @@
-@extends('layouts.app', ['title' => __('User Management')])
+@extends('layouts.inventoryApp', ['title' => __('User Management')])
 
 @section('content')
     @include('layouts.headers.cards')
