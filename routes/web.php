@@ -13,13 +13,8 @@
 
 
 //Route::get('/', 'PagesController@home');
-<<<<<<< HEAD
 // Route::get('/about', 'PagesController@about');
 // Route::get('/contact', 'PagesController@contact');
-=======
-Route::get('/about', 'PagesController@about');
-Route::get('/contact', 'PagesController@contact');
->>>>>>> 05ea29b3dced9d73d915557c11c02f485bb90139
 
 // Route::get('/', function () {
 
@@ -37,36 +32,16 @@ Route::get('/contact', 'PagesController@contact');
 // });
 Auth::routes();
 
-<<<<<<< HEAD
-// Route::get('/', 'HomeController@index')->name('home');
 
 // Route::get('/home', 'HomeController@index')->name('home');
-=======
-Route::get('/', 'HomeController@index')->name('home');
 
-Route::get('/home', 'HomeController@index')->name('home');
->>>>>>> 05ea29b3dced9d73d915557c11c02f485bb90139
-
-Route::group(['middleware' => 'auth'], function () {
-	Route::resource('user', 'UserController', ['except' => ['show']]);
-
-	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);
-
-	Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
+	// Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
 	
-	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
+	// Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
 
-<<<<<<< HEAD
-// Route::get('/events', 'EventsController@index')->name('events');
 
 // Route::get('/inventory', 'InventoryController@show')->name('inventory');
-=======
-Route::get('/events', 'EventsController@index')->name('events');
->>>>>>> 05ea29b3dced9d73d915557c11c02f485bb90139
 
-});
-
-// Route::get('/events', 'EventsController@index')->name('events');
 
 // Route::get('/inventory', 'InventoryController@index')->name('inventory');
 

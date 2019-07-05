@@ -92,7 +92,7 @@
                             </thead>
                             <tbody>
                                 <?php  
-                                        
+
                                 ?>
                                 @foreach ($joinedInventory as $i)
                                 @if($i->status > 0)
@@ -117,51 +117,34 @@
                                    
                                     <td>{{ $i->last_modified }}</td>
                                     <td class="popup">
-                                        <div class="align-items-center">
-                                        <ul class="navbar-nav align-items-center d-none d-md-flex btn-secondary">
-                                            <li class="nav-item dropdown">
-                                                <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    <div class="media align-items-center">
-                                                        {{-- <span class="avatar avatar-sm rounded-circle">
-                                                            <img alt="Image placeholder" src="{{ asset('argon') }}/img/theme/team-4-800x800.jpg">
-                                                        </span> --}}
-                                                        <div class="d-lg-block">
-                                                            <span class="mb-0 text-sm  font-weight-bold">Action</span>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                                <div class="dropdown-menu dropdown-menu-arrow dropdown-menu">
-                                                    <div class=" dropdown-header noti-title">
-                                                        <h6 class="text-overflow m-0">{{ __('Please Select an Action!') }}</h6>
-                                                    </div>
-                                                    <div class="dropdown-divider"></div>
-                                                    <a href="{{ url('inventory/'.$i->inventory_id) }}" class="dropdown-item">
-                                                        <i class="ni ni-zoom-split-in"></i>
-                                                        <span>{{ __('View Item') }}</span>
-                                                    </a>
-                                                    <a href="{{ url('inventory/'.$i->inventory_id.'/edit')}}" class="dropdown-item">
-                                                        <i class="ni ni-fat-add"></i>
-                                                        <span>{{ __('Replenish Item') }}</span>
-                                                    </a>
-                                                    <a href="" class="dropdown-item" onclick="printContent('barcode-{{$i->inventory_id}}');" id="printBtn{{ $i->inventory_id}}">
-                                                        <i class="ni ni-single-copy-04"></i>
-                                                        <span>{{ __('Print Barcode') }}</span>
-                                                    </a>
-                                                    {{-- <a href="{{ url('')}}" class="dropdown-item">
-                                                        <i class="ni ni-fat-delete"></i>
-                                                        <span>{{ __('Remove from Inventory') }}</span>
-                                                    </a> --}}
-                                                    <a href="" class="dropdown-item" onclick="event.preventDefault();
-                                                        document.getElementById('delete-form-{{ $i->inventory_id }}').submit();">
-                                                        <i class="ni ni-fat-remove"></i>
-                                                        <span>{{ __('Remove from Inventory') }}</span>
-                                                        {!! Form::open(['action' => ['InventoryController@destroy', $i->inventory_id], 'method' => 'POST', 'id' => 'delete-form-'.$i->inventory_id]) !!}
-                                                            {{ Form::hidden('_method','DELETE')}}
-                                                        {!! Form::close() !!}
-                                                    </a>
+                                        <div class="dropdown">
+                                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Action
+                                            </button>
+                                            <div class="dropdown-menu dropdown-menu-arrow dropdown-menu">
+                                                <div class=" dropdown-header noti-title">
+                                                    <h6 class="text-overflow m-0">{{ __('Please Select an Action!') }}</h6>
                                                 </div>
-                                            </li>
-                                        </ul>
+                                                <div class="dropdown-divider"></div>
+                                                <a href="{{ url('inventory/'.$i->inventory_id) }}" class="dropdown-item">
+                                                    <i class="ni ni-zoom-split-in"></i>
+                                                    <span>{{ __('View Item Details') }}</span>
+                                                </a>
+
+                                                <a href="{{ url('inventory/'.$i->inventory_id.'/edit')}}" class="dropdown-item">
+                                                    <i class="ni ni-fat-add"></i>
+                                                    <span>{{ __('Replenish Item') }}</span>
+                                                </a>
+                                                
+                                                <a href="" class="dropdown-item" onclick="event.preventDefault();
+                                                    document.getElementById('delete-form-{{ $i->inventory_id }}').submit();">
+                                                    <i class="ni ni-fat-remove"></i>
+                                                    <span>{{ __('Remove from Inventory') }}</span>
+                                                    {!! Form::open(['action' => ['InventoryController@destroy', $i->inventory_id], 'method' => 'POST', 'id' => 'delete-form-'.$i->inventory_id]) !!}
+                                                        {{ Form::hidden('_method','DELETE')}}
+                                                    {!! Form::close() !!}
+                                                </a>
+                                            </div>
                                         </div>
                                         {{-- <a class="btn btn-sm btn-primary" href="inventory/{{ $i->itemId }}/edit"> Replenish Item </a> --}}
                                     </td>
