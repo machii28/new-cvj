@@ -46,26 +46,14 @@ class InventoryController extends Controller
         //
         $category_ref = DB::table('category_ref')->get();
 
-        $subcategory_ref = DB::table('subcategory_ref')->get();
+        // $subcategory_ref = DB::table('subcategory_ref')->get();
 
-        $subcategoryIds = array();
-        foreach($subcategory_ref as $item)
-        {
-            $subcategoryIds[] = $item->subcategory;
-        }
+        $colors = DB::table('colors')->get();
 
-        $subcategoryNames = array();
-        foreach($subcategory_ref as $item)
-        {
-            $subcategoryNames[] = $item->subcategory_name;
-        }
-
-        //dd($category_ref);
-        // dd($subcategoryIds);
         //dd($subcategoryNames);
 
         // return view('addInventoryForm', ['categories' => $category_ref, 'subcategoryIds' => $subcategoryIds, 'subcategoryNames' => $subcategoryNames]);
-        return view('addInventoryForm', ['categories' => $category_ref, 'subcategories' => $subcategory_ref]);
+        return view('addInventoryForm', ['categories' => $category_ref, 'colors' => $colors]);
     }
 
     /**
@@ -88,6 +76,7 @@ class InventoryController extends Controller
                 'source'        => 'required|min:1',
                 'subcategory'   => 'required|min:1',
                 'threshold'     => 'required|numeric|min:'.$minTh,
+                'color'         => 'required|min:1',
             ],[
                 'itemName.required'     => 'Please Input a Valid Item Name.',
                 'category.required'     => 'Please Select a Category.',

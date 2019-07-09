@@ -10,7 +10,7 @@
 						<div class="card-header">
 								<div class="row align-items-center">
 									<div class="col">
-										<h1 class="">Add Inventory Form</h1>
+										<h1 class="">Add Item to Inventory</h1>
 									</div>
 									<div class="col-md-4 " >
 											{{-- <label class="form-label">Item Source</label> --}}
@@ -50,7 +50,7 @@
 									
 								</div>
 								
-								<div class="col-md-6 mb-3">
+								<div class="col-md-3 mb-3">
 										<label class="form-label">Category</label>
 										<select id="category" name="category" class="form-control" placeholder="Category" onchange="filterDropdown()" required>
 												<option value = 0 selected disabled>Please Select a Category</option>
@@ -59,25 +59,34 @@
 												@endforeach
 										</select>
 								</div>
-								<div class="col-md-6 mb-3">
+								<div class="col-md-3 mb-3">
+									<label class="form-label">Color</label>
+									<select id="color" name="Color" class="form-control" placeholder="Color" onchange="filterDropdown()" required>
+											<option value = 0 selected disabled>Please Select a Color</option>
+											@foreach ($colors as $color)
+												<option id="category-{{ $color->color_id }}" value="{{ $color->color_id }}">{{ $color->color_name}}</option>
+											@endforeach
+									</select>
+								</div>
+								{{-- <div class="col-md-6 mb-3">
 										<label class="form-label">Sub-Category</label>
 										<select id="subcategory" name="subcategory" class="form-control" placeholder="Sub-Category" required>
 												<option value = 0 selected disabled>Please Select a Category</option>
-												{{-- {{$items[] = array()}}
+												{{$items[] = array()}}
 													@foreach($subcategories as $subcategory)
 														{{$items[] = $subcategory->subcategory}}
-													@endforeach --}}
-												{{-- <input type="hidden" value="{{$items}}" id="hiddenArray"> --}}
-												{{-- @foreach ($subcategories as $subcategory)
+													@endforeach
+												<input type="hidden" value="{{$items}}" id="hiddenArray">
+												@foreach ($subcategories as $subcategory)
 													
 													<option id="subcategory-{{$subcategory->category_no}}" value="{{ $subcategory->subcategory }}">{{ $subcategory->subcategory_name }}</option>
 													
-												@endforeach              --}}
+												@endforeach             
 												@foreach ($subcategories as $subcategory)
 													<option id="category-{{$subcategory->subcategory}}" value="{{ $subcategory->subcategory }}">{{ $subcategory->subcategory_name }}</option>
 												@endforeach
 										</select>
-								</div>
+								</div> --}}
 								
 								<div class="col-md-4 mb-3">
 									<label class="form-label">Item Quantity</label>
@@ -86,6 +95,11 @@
 								<div class="col-md-4 mb-3">
 									<label class="form-label">Item Threshold</label>
 									{{ Form::number('threshold', '',['class' => 'form-control', 'placeholder' => 'Minimum Threshold'] )}}
+								</div>
+
+								<div class="col-md-4 mb-3">
+									<label class="form-label">Item Price</label>
+									{{ Form::number('price', '',['class' => 'form-control', 'placeholder' => 'Item Price' , 'type' => 'number' , 'min' => 1] )}}
 								</div>
 							</div>
 						</div>

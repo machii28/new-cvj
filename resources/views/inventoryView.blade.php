@@ -135,9 +135,7 @@
 						{{ Form::submit('Replenish Item', ['class' => 'btn btn-success']) }}
 				</div> --}}
 			</div>
-								</div>
-								
-						
+		</div>				
 		{!! Form::close() !!}
 		</div>
 		</div>

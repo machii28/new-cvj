@@ -30,15 +30,16 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $event = DB::table('event')->get();
-        $venue = DB::table('reserve_venue')->get();
-
         $joinedTable = DB::table('event')
         ->select('*')
         ->join('reserve_venue','reserve_venue.reservation_id','=','event.reservation_id')
         ->get();
 
-        return view('inventoryDashboard', ['events' => $joinedTable]);
+        $criticalInventory = DB::table('inventory')
+        ->where('threshold', '<=', 'quantity')
+        ->get();
+
+        return view('inventoryDashboard', ['criticalInventory' => $criticalInventory, 'events' => $joinedTable]);
         
     }
 }
