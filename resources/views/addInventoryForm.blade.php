@@ -70,6 +70,7 @@
 											<option value=4>Extra Large</option>
 									</select>
 								</div> 
+								<!-- test test -->
 								{{-- <div class="col-md-6 mb-3">
 										<label class="form-label">Sub-Category</label>
 										<select id="subcategory" name="subcategory" class="form-control" placeholder="Sub-Category" required>
