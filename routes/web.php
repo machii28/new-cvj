@@ -65,6 +65,11 @@ Route::resource('events', 'EventsController');
 Route::resource('/roset', 'Roset');
 Route::resource('calendar', 'Calendar');
 
-Auth::routes();
+//MARKzs Routes
 
+Route::get('event_costing/{event_id}','EventsCostingController@show');
+
+Route::resource('event_costing','EventsCostingController');
+
+Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
