@@ -52,11 +52,11 @@
                                         {{ session()->get('success') }}<br>
                                     </div>
                                 @endif
-                                @if(session()->has('delete'))
+                                @if(session()->has('deleted'))
                                     <br>
                                     <div class="alert alert-danger" role="alert">
                                         <button type="button" data-dismiss="alert" class="close"><span aria-hidden="true">x</span></button>
-                                        {{ session()->get('delete') }}<br>
+                                        {{ session()->get('deleted') }}<br>
                                     </div>
                                 @endif
                             </div>
