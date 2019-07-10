@@ -48,7 +48,7 @@ class InventoryController extends Controller
 
         // $subcategory_ref = DB::table('subcategory_ref')->get();
 
-        $colors = DB::table('colors')->get();
+        $colors = DB::table('color')->get();
 
         //dd($subcategoryNames);
 
@@ -68,15 +68,16 @@ class InventoryController extends Controller
             $threshold  = $request->input('threshold');
 
             $minTh = $quantity/2;
+            $minP = 1.00;
         
             $this->validate($request, [
                 'itemName'      => 'required',
                 'category'      => 'required|min:1',
                 'quantity'      => 'required|numeric|min:1',
                 'source'        => 'required|min:1',
-                'subcategory'   => 'required|min:1',
                 'threshold'     => 'required|numeric|min:'.$minTh,
                 'color'         => 'required|min:1',
+                'price'         => 'required|min:'.$minP,
             ],[
                 'itemName.required'     => 'Please Input a Valid Item Name.',
                 'category.required'     => 'Please Select a Category.',
@@ -96,12 +97,13 @@ class InventoryController extends Controller
             $inventory->date_created = Carbon::now();
             $inventory->status = '1';
             $inventory->itemSource = $request->input('source');
-            $inventory->subcategory = $request->input('subcategory');
+            $inventory->color = $request->input('color');
             $inventory->threshold = $request->input('threshold');
+            $inventory->price = $request->input('price');
             //$inventory->last_modified = Carbon::now();
             $inventory->save();
             
-            return redirect('inventory')->with('success', 'Item Added!');
+            return redirect('/inventory')->with('success', 'Item Added!');
         
     }
 
@@ -125,14 +127,16 @@ class InventoryController extends Controller
 
         $category_ref = DB::table('category_ref')->get();
 
-        $subcategory = DB::table('subcategory_ref')->get();
+        $color =  DB::table('color')->get();
 
+        $size = DB::table('size')->get();
        
         // $subcategory = DB::table('subcategory_ref')
         //     ->select('subcategory')
         //     ->where('subcategory', '>', 0);
         //dd($itemInfo);
-        return view('inventoryView', ['itemInfo' => $itemInfo, 'categories' => $category_ref, 'subcategories' => $subcategory]);
+        // dd($color);
+        return view('inventoryView', ['itemInfo' => $itemInfo, 'categories' => $category_ref, 'sizes' => $size, 'colors' => $color]);
 
     }
 
@@ -155,6 +159,8 @@ class InventoryController extends Controller
         ->where('inventory_id', '=', $id)
         ->join('inventory','category_ref.category_no','=','inventory.category')
         ->get();
+
+       
 
         //   dd($item);
         //   dd($category);
@@ -245,13 +251,11 @@ class InventoryController extends Controller
         $item = DB::table('inventory')
         ->where('inventory_id', '=', $id)
         ->update([
-              //'category' => $request->input('category'),
-            //   'quantity' => $request->input('quantity')
             'status' => '0',
             'last_modified' => Carbon::now(),
         ]);
         
-        return redirect('/inventory')->with('success', 'Item Removed');
+        return redirect('/inventory')->with('delete', 'Item Disabled');
     }
 
     public function selectType(Request $request){

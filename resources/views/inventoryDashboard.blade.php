@@ -88,7 +88,7 @@
                     <div class="card-header border-0">
                         <div class="row align-items-center">
                             <div class="col">
-                                <h3 class="mb-0">Critical Items in Inventory</h3>
+                                <h3 class="mb-0">Critical Items</h3>
                             </div>
                             <div class="col text-right">
                             <a href="{{url("inventory")}}" class="btn btn-sm btn-primary">See all</a>
@@ -104,19 +104,17 @@
                                     <th scope="col">Threshold</th>
                                     <th scope="col">Quantity in Stock</th>
                                     <th scope="col">Price per Item</th>
-                                    <th scope="col">Status</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($criticalInventory as $i)
-                                @if($i->status > 0)
+                                @foreach ($criticalInventory as $b)
+                                @if($b->status > 0)
                                 <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                    <td scope="col">{{ $b->inventory_name }}</td>
+                                    <td scope="col">{{ $b->threshold }}</td>
+                                    <td scope="col">{{ $b->quantity }}</td>
+                                    <td scope="col">{{ $b->price }}</td>
                                     <td>
                                         <div class="dropdown">
                                             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -127,21 +125,21 @@
                                                     <h6 class="text-overflow m-0">{{ __('Please Select an Action!') }}</h6>
                                                 </div>
                                                 <div class="dropdown-divider"></div>
-                                                <a href="{{ url('inventory/'.$i->event_name) }}" class="dropdown-item">
+                                                <a href="{{ url('inventory/'.$b->inventory_id) }}" class="dropdown-item">
                                                     <i class="ni ni-zoom-split-in"></i>
                                                     <span>{{ __('View Event Details') }}</span>
                                                 </a>
 
-                                                <a href="{{ url('inventory/'.$i->inventory_id.'/edit')}}" class="dropdown-item">
+                                                <a href="{{ url('inventory/'.$b->inventory_id.'/edit')}}" class="dropdown-item">
                                                     <i class="ni ni-fat-add"></i>
                                                     <span>{{ __('Replenish Item') }}</span>
                                                 </a>
                                                 
                                                 <a href="" class="dropdown-item" onclick="event.preventDefault();
-                                                    document.getElementById('delete-form-{{ $i->inventory_id }}').submit();">
+                                                    document.getElementById('delete-form-{{ $b->inventory_id }}').submit();">
                                                     <i class="ni ni-fat-remove"></i>
                                                     <span>{{ __('Remove from Inventory') }}</span>
-                                                    {!! Form::open(['action' => ['InventoryController@destroy', $i->event_name], 'method' => 'POST', 'id' => 'delete-form-'.$i->inventory_id]) !!}
+                                                    {!! Form::open(['action' => ['InventoryController@destroy', $b->inventory_id], 'method' => 'POST', 'id' => 'delete-form-'.$i->inventory_id]) !!}
                                                         {{ Form::hidden('_method','DELETE')}}
                                                     {!! Form::close() !!}
                                                 </a>

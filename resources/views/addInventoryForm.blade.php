@@ -20,13 +20,6 @@
 													<option value = 1>Bought</option>
 													<option value = 2>Outsourced</option>
 													<option value = 3>Alternative (Flowers Only)</option>
-													{{-- @foreach ($categories as $category)
-													@i f ($category->categoryId == $itemInfo[0]->category)
-														<option value="{{ $category->categoryId }}" id="categoryBal" selected>{{ $category->categoryName }}</option>
-													@else
-														<option value="{{ $category->categoryId }}" id="categoryBal" >{{ $category->categoryName }}</option>
-													@endif
-													@endforeach --}}
 											</select>
 											</div>
 									</div>
@@ -44,12 +37,11 @@
 							
 							
 							<div class="row">
-								<div class="col-md-12 mb-3">
+								<div class="col-md-9 mb-3">
 									<label class="form-label">Item Name</label>
 									{{ Form::text('itemName', '',['class' => 'form-control', 'placeholder' => 'Item Name'] )}}
-									
 								</div>
-								
+								<div class="col-md-3 mb-3"></div>
 								<div class="col-md-3 mb-3">
 										<label class="form-label">Category</label>
 										<select id="category" name="category" class="form-control" placeholder="Category" onchange="filterDropdown()" required>
@@ -61,11 +53,21 @@
 								</div>
 								<div class="col-md-3 mb-3">
 									<label class="form-label">Color</label>
-									<select id="color" name="Color" class="form-control" placeholder="Color" onchange="filterDropdown()" required>
+									<select id="color" name="color" class="form-control" placeholder="Color" required>
 											<option value = 0 selected disabled>Please Select a Color</option>
 											@foreach ($colors as $color)
 												<option id="category-{{ $color->color_id }}" value="{{ $color->color_id }}">{{ $color->color_name}}</option>
 											@endforeach
+									</select>
+								</div>
+								<div class="col-md-3 mb-3">
+									<label class="form-label">Size</label>
+									<select id="color" name="Size" class="form-control" placeholder="Size" required>
+											<option value = 0 selected disabled>Please Select a Size</option>
+											<option value=1>Small</option>
+											<option value=2>Medium</option>
+											<option value=3>Large</option>
+											<option value=4>Extra Large</option>
 									</select>
 								</div>
 								{{-- <div class="col-md-6 mb-3">
@@ -88,7 +90,7 @@
 										</select>
 								</div> --}}
 								
-								<div class="col-md-4 mb-3">
+								<div class="col-md-5 mb-3">
 									<label class="form-label">Item Quantity</label>
 									{{ Form::number('quantity', '',['class' => 'form-control', 'placeholder' => 'Starting Quantity'] )}}
 								</div>
@@ -96,10 +98,10 @@
 									<label class="form-label">Item Threshold</label>
 									{{ Form::number('threshold', '',['class' => 'form-control', 'placeholder' => 'Minimum Threshold'] )}}
 								</div>
-
+								<div class="col-md-3"></div>
 								<div class="col-md-4 mb-3">
-									<label class="form-label">Item Price</label>
-									{{ Form::number('price', '',['class' => 'form-control', 'placeholder' => 'Item Price' , 'type' => 'number' , 'min' => 1] )}}
+									<label class="form-label">Item Price (Php)</label>
+									{{ Form::number('price', '',['class' => 'form-control', 'placeholder' => 'Item Price' , 'type' => 'number' , 'min' => 1 , 'step' => 0.01] )}}
 								</div>
 							</div>
 						</div>
@@ -154,67 +156,4 @@
 	});
 
 
-</script>
-<script>
-	function filterDropdown(){
-		// alert('hi');
-
-		// var arr = document.getElementById('hiddenArray').value;
-		// alert('hi');
-		// var ids = @json($subcategories);
-		// var names = @json($subcategories);
-		var subcategories = @json($subcategories);
-		subcategories
-		alert(names);
-		// alert('hi');
-		var a = document.getElementById('category').value;
-		var select = document.getElementById("subcategory");
-		var options;
-
-		
-
-		$("#subcategory").empty();
-
-
-		if(a==1){
-			for( var x=0; x<ids.length; x++){
-				options[x] = names[x];
-				alert(options[x]);
-			}
-		} else if(a==2){
-			var b = 4;
-			for( var x=0; (x+b)<ids.length; x++){
-				options[x] = names[x];
-			}
-		} else if(a==3){
-			var b = 9;
-			for( var x=0; (x+b)<ids.length; x++){
-				options[x] = names[x];
-			}
-		} else{
-			options = [16, 17, 18, 19, 20];
-			
-		}
-
-		
-		// var options = 
-		for(var i = 0; i < options.length; i++) {
-			// alert(i);
-			var opt = options[i];
-			var el = document.createElement("option");
-			el.textContent = opt;
-			el.value = opt;
-			select.appendChild(el);
-		}
-	}
-	// 	var options = $("#DropDownList2").html();
-	// $("#DropDownList1").change(function(e) {
-	// var text = $("#DropDownList1 :selected").text();
-	// $("#DropDownList2").html(options);
-	// if(text == "All") return;
-	// 	$('#DropDownList2 :not([value^="' + text.substr(0, 3) + '"])').remove();
-	// });​
-
-	
-	
 </script>
