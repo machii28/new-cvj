@@ -46,9 +46,9 @@ Auth::routes();
 // Route::get('/inventory', 'InventoryController@index')->name('inventory');
 
 //Jeremy's Routess
-Route::get('', 'InventoryHomeController@index')->name('home');
-Route::get('/', 'InventoryHomeController@index')->name('home');
-Route::get('/home', 'InventoryHomeController@index')->name('home');
+// Route::get('', 'InventoryHomeController@index')->name('home');
+// Route::get('/', 'InventoryHomeController@index')->name('home');
+// Route::get('/home', 'InventoryHomeController@index')->name('home');
 
 Route::get('inventory/return', 'InventoryController@return');
 //Route::get('inventory/view/{$id}', 'InventoryController@updateInfo');
@@ -68,4 +68,5 @@ Route::resource('calendar', 'Calendar');
 
 Auth::routes();
 
+Route::get('/', 'HomeController@index')->name('home');
 Route::get('/home', 'HomeController@index')->name('home');
