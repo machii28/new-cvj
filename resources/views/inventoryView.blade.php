@@ -47,7 +47,7 @@
 													<option value=0 selected>Disabled</option>
 													<option value=1> Activate Item</option>
 												@else
-													<option value=0>		  Disable Item </option>
+													<option value=0> Disable Item </option>
 													<option value=1 selected> Active</option>
 												@endif
 											</select>

@@ -21,10 +21,9 @@ class EventsController extends Controller
      */
     public function index()
     {
-        
         $event = Event::get();
         return view('eventsDash', ['events' => $event]);
-    
+        // return view('eventsDash');
     }
 
     /**

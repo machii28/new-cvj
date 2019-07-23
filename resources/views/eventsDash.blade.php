@@ -5,13 +5,13 @@
 @include('layouts.headers.inventoryCard1')
 <div class="container-fluid mt--7">
 	<div class="card-body">
-		<div class="col-xl-8 mb-5 mb-xl-0">
+		<div class="col-xl-12 mb-5 mb-xl-0">
 				<div class="card shadow">
 						{!! Form::open(['action' => 'InventoryController@store', 'method' => 'POST', 'autocomplete' =>'off']) !!}
 						<div class="card-header">
 								<div class="row align-items-center">
 									<div class="col">
-										<h1 class="">Deploy Inventory Form</h1>
+										<h1 class="">Approve/Decline Events</h1>
 									</div>
 									<div class="col-md-4">
 											{{-- <label class="form-label">Item Source</label> --}}
@@ -43,19 +43,22 @@
 											</tr>
 										</thead>
 										<tbody>
-											@foreach ($events as $i)
-											@if($i->status > 0)
+											{{-- @foreach ($events as $i)
+											@if($i->status > 0) --}}
 											<tr>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
+												<td>Hard</td>
+												<td>Coded</td>
+												<td>Event</td>
+												<td>No</td>
+												<td>API</td>
+												<td>Yet</td>
+												<td>
+													{{ Form::submit('Approve Event', ['class' => 'btn btn-success', 'name' => '']) }}
+													<a href="{{ url('inventory')}}" class="btn btn-danger">Decline</a>
+												</td>
 											</tr>
-											@endif
-											@endforeach
+											{{-- @endif
+											@endforeach --}}
 										</tbody>
 									</table>
 								</div>
@@ -69,8 +72,8 @@
 								<p>{{$subcategoryId}}</p>
 							@endforeach --}}
 							<div class="text-right">
-								{{ Form::submit('Deploy Item', ['class' => 'btn btn-success']) }}
-								<a href="{{ url('inventory')}}" class="btn btn-default">Back</a>
+								
+								
 								{{-- {{Form::hidden('_method', 'PUT')}} --}} 
 							</div>
 						</div>
