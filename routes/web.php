@@ -67,9 +67,19 @@ Route::resource('calendar', 'Calendar');
 
 //MARKzs Routes
 
+//Costing
 Route::get('event_costing/{event_id}','EventsCostingController@show');
-
 Route::resource('event_costing','EventsCostingController');
+
+//Event Budget Template
+Route::get('event_budget_template','EventsBudgetTemplateController@index')->name("event_budget_template");
+Route::post('event_budget_template','EventsBudgetTemplateController@store')->name('post.event_budget_template');
+//Event Budget
+Route::get('event_budgets','EventsBudgetController@index')->name("event_budgets");
+Route::get('event_budgets/view/{event_id}','EventsBudgetController@show')->name("get.event_budgets");
+Route::post('event_budgets/','EventsBudgetController@create')->name("post.event_budgets");
+//Gmail API
+Route::get('send_mail','MailController@index');
 
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
