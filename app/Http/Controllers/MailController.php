@@ -9,8 +9,9 @@ use App\categoryRef;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests;
 use Carbon\Carbon;
-
-class InventoryHomeController extends Controller
+use Faker\Generator as Faker;
+use Mail;
+class MailController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -29,11 +30,16 @@ class InventoryHomeController extends Controller
      */
     public function index()
     {
-        $joinedTable = DB::table('category_ref')
-        // ->join('category_ref','inventory.category','=','category_ref.id')
-        ->join('inventory','category_ref.category_no','=','inventory.category')
-        ->get();
 
-        return view('inventoryDashboard',['joinedTable' => $joinedTable, ]);
+        $to_name = 'Anigav Sinep';
+        $to_email = 'jeremy_ocampojr@dlsu.edu.ph';
+        $data = array('send_mail'=>'monkaS', 'body' => 'monkey');
+        Mail::send('send_mail', $data, function($message) use ($to_name, $to_email) {
+            $message->to($to_email, $to_name)->subject('Caterie Email');
+            $message->from('betbot.py@gmail.com','Caterie Bot');
+        });
+
+        return redirect("home");
+        
     }
 }
