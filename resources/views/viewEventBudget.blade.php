@@ -29,9 +29,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-12" style="padding-bottom: 5vh;padding-right: 2vw">
+                    <div class="col-12" style="padding-bottom: 5vh;padding-right: 2vw;min-height: 75vh;">
                         @if($budget==null)
-
                         <form action="{{ route('post.event_budgets') }}" method="POST" style="padding:10px">
 
                             {{csrf_field()}}
@@ -73,7 +72,57 @@
                             </center>
                         </form>
                         @else
-                            //code for existing here
+                        <form action="{{ route('post.event_budgets') }}" method="POST" style="padding:10px">
+                            {{csrf_field()}}
+                            <!--
+                            <button class="btn btn-icon btn-3 btn-secondary" data-toggle="modal" data-target="#exampleModal" type="button">
+                                Edit Budget
+                            </button>
+
+                            -->
+                            <button class="btn btn-icon btn-3 btn-secondary" onclick="edit_items()" type="button">
+                                <i class="fa fa-edit fa-lg"></i>  Edit Budget
+                            </button>
+                            <hr>
+                            <div class="row" style="background-color: #f4f5f7;padding: 1.0vw;">
+                                <input type="hidden" name="event" value="{{$event_id}}">
+                                <div class="col-md-12" >
+                                    <div class="row budget_item_rows">
+                                        <div id="budget_name_col" class="col-md-4 marg_top">
+                                            <label>Budget Item</label>
+                                            @foreach($budget->budget_items as $budget_item)
+                                                <br>
+                                                <i class="fa fa-plus fa-lg rm_item" style="display: none"></i> <input type="text" style="display: inline-block;width: 90%" name="names[]" class="form-control budg_item" placeholder="Item Name" value="{{$budget_item->item_name}}" disabled>
+                                            @endforeach
+                                        </div>
+                                        <div id="budget_desc_col" class="col-md-4 marg_top">
+                                            <label>Item Description</label>
+                                            @foreach($budget->budget_items as $budget_item)
+                                                <br>
+                                                <i class="fa fa-plus fa-lg rm_item" style="display: none"></i> <input type="text" style="display: inline-block;width: 90%" name="descs[]" class="form-control budg_item" placeholder="Item Description here" value="" disabled>
+                                            @endforeach
+                                        </div>
+                                        <div id="budget_amt_col" class="col-md-4 marg_top">
+                                            <label>Budget Amount</label>
+                                            @foreach($budget->budget_items as $budget_item)
+                                                <br>
+                                                <i class="fa fa-plus fa-lg rm_item" style="display: none"></i> <input type="number" name="vals[]"  style="display: inline-block;width: 90%" class="form-control budg_item" placeholder="0.0" value="{{$budget_item->budget_amount}}" disabled>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                    <button id="add_item_btn" class="btn btn-icon btn-sm btn-primary" style="margin-top: 4vh;display: none" onclick="duplicate()" type="button">
+                                        Add New Item <i class="fa fa-plus fa-lg"></i>
+                                    </button>
+                                </div>
+                                <br>
+                            </div>
+                            <hr>
+                            <center style="display: none" id="saving_btn_div">
+                                <button class="btn btn-icon btn-3 btn-primary" type="submit">
+                                    Save Budget
+                                </button>
+                            </center>
+                    </form>
                         @endif
                     </div>
                 </div>
@@ -120,6 +169,7 @@
         </div>
     </div>
     <script>
+        let edit = false;
         function choose_template(obj) {
             let item_names = $(obj).attr("item_names").split().length > 0 ? ($(obj).attr("item_names").split(",")): null;
             let item_vals = $(obj).attr("item_vals").split().length > 0 ? ($(obj).attr("item_vals").split(",")): null;
@@ -143,7 +193,6 @@
             }
             $("#modal_close_btn").click();
         }
-
         function duplicate() {
             add_str='<input type="text" name="names[]" class="form-control budg_item" placeholder="Item Name" value="">';
             $("#budget_name_col").append(add_str);
@@ -152,6 +201,24 @@
             add_str='<input type="number" name="vals[]" step="any" class="form-control budg_item" placeholder="0.0" value="">';
             $("#budget_amt_col").append(add_str);
 
+        }
+        function edit_items(){
+            edit = !edit;
+            if(edit){
+               $("#saving_btn_div").css("display","block");
+               $("#add_item_btn").css("display","block");
+               $(".remove_item").css("display","block");
+               $(".rm_item").css("display","inline-block");
+               $(".budg_item").attr("disabled",false)
+            }
+            else{
+                $("#saving_btn_div").css("display","none");
+                $("#add_item_btn").css("display","none");
+                $(".remove_item").css("display","none");
+                $(".rm_item").css("display","none");
+                $(".budg_item").attr("disabled",true);
+
+            }
         }
     </script>
 @endsection
