@@ -21,7 +21,15 @@ class EventsController extends Controller
      */
     public function index()
     {
-        $event = Event::get();
+        // $event = Event::get();
+
+        $event = new Event;
+
+        $event->name = 'A new event';
+        $event->startDateTime = Carbon::now();
+        $event->endDateTime = Carbon::now()->addHour();
+        $event->save();
+
         return view('eventsDash', ['events' => $event]);
         // return view('eventsDash');
     }

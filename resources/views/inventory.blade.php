@@ -203,7 +203,7 @@
                                         {{-- <div class="row"> --}}
                                             <div class="col-xs-5">
                                         {{-- <input class="form-control" id="myInput" type="search" onkeyup="searchTable()" style="background: transparent;" placeholder="Search Item Here"> --}}
-                                        <input class="form-control" id="myInput" type="search" onkeyup="searchTable()" style="background: transparent;" placeholder="Search Item Here">
+                                                <input class="form-control" id="myInput" type="search" onkeyup="searchTable()" style="background: transparent;" placeholder="Search Item Here">
                                             </div>
                                             {{-- <div class="col-xs-2">
                                                 &nbsp; &nbsp;
@@ -216,7 +216,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
-                                        @if(session()->has('success'))
+                                        {{-- @if(session()->has('success'))
                                             <br>
                                             <div class="alert alert-success" role="alert">
                                                 <button type="button" data-dismiss="alert" class="close"><span aria-hidden="true">x</span></button>
@@ -229,7 +229,7 @@
                                                 <button type="button" data-dismiss="alert" class="close"><span aria-hidden="true">x</span></button>
                                                 {{ session()->get('deleted') }}<br>
                                             </div>
-                                        @endif
+                                        @endif --}}
                                     </div>
                                 </div>
                                 {{-- {!! Form::open(['action' => 'InventoryController@selectType', 'method' => 'POST']) !!}
