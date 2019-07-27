@@ -25,17 +25,35 @@
 							
 							
 							<div class="row">
-								<div class="col-md-9 mb-3">
+								<div class="col-md-8 mb-3">
 									<label class="form-label">Food Name</label>
 									{{ Form::text('foodName', '',['class' => 'form-control', 'placeholder' => 'Food Name'] )}}
 								</div>
-								<div class="col-md-3 mb-3"></div>
-								<div class="col-md-3 mb-3">
+								<div class="col-md-4 mb-3">
                                     <label class="form-label">Item Price (Php)</label>
 									{{ Form::number('price', '',['class' => 'form-control', 'placeholder' => 'Item Price' , 'type' => 'number' , 'min' => 1 , 'step' => 0.01] )}}
-								</div>
+                                </div>
 								<div class="col-md-12">
-									
+									<div class="set-form">
+                                        <table id="myTable" class="table table-bordered">
+                                          <tr>
+                                            <th>Question</th>
+                                            <th>Answer</th>
+                                          </tr>
+                                          <tr>
+                                            <td>
+                                              <textarea name="Question" placeholder="Question" th:field="${questionAnswerSet.question}" id="question" style="resize: none; width: 100%;"></textarea>
+                                            </td>
+                                            <td>
+                                              <textarea name="Answer" placeholder="Answer" th:field="${questionAnswerSet.answer}" id="answer" style="resize: none; width: 100%;"></textarea>
+                                            </td>
+                                          </tr>
+                                        </table>
+                                        <div class="col-md-12 mt-3">
+                                            <div class="text-center">
+                                                <input type="button" id="more_fields" onclick="add_fields();" value="+ Add Row" class="btn btn-secondary" />
+                                            </div>
+                                        </div>
 								</div>
 							</div>
 						</div>
@@ -88,6 +106,11 @@
         $('#secondaryInput').show();
 	}
 	});
+
+    function add_fields() {    
+        document.getElementById("myTable").insertRow(-1).innerHTML = 
+        '<tr><td><input class="form-control" name="ingredientName" placeholder="Question" th:field="${questionAnswerSet.question}"></textarea></td><td><input class="form-control" name="quantity" placeholder ="Answer" field="${questionAnswerSet.answer}"></textarea></td ><td><input class="form-control" name="price" placeholder="Price" disabled></td></tr>';
+    }
 
 
 </script>

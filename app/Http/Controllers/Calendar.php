@@ -13,7 +13,9 @@ class Calendar extends Controller
     public function __construct()
     {
         $client = new Google_Client();
-        $client->setAuthConfig('client_secret.json');
+        $KEY_FILE_LOCATION = __DIR__ . 'app/google-calendar/service-account-credentials.json';
+        // $client->setAuthConfig('service-account-credentials.json');
+        $client->setAuthConfig($KEY_FILE_LOCATION);
         $client->addScope(Google_Service_Calendar::CALENDAR);
         $guzzleClient = new \GuzzleHttp\Client(array('curl' => array(CURLOPT_SSL_VERIFYPEER => false)));
         $client->setHttpClient($guzzleClient);

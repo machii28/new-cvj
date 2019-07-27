@@ -3,41 +3,23 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\inventory;
-use App\categoryRef;
-use Illuminate\Support\Facades\DB;
-use App\Http\Requests;
-use Carbon\Carbon;
-use Faker\Generator as Faker;
-use Spatie\GoogleCalendar\Event;
 
-class EventsController extends Controller
+class OutsourcingController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index()
     {
-        // $event = Event::get();
-        $events = Event::get();
-
-        // $events[0]->startDate;
-        // $events[0]->startDateTime;
-        // $events[0]->endDate;
-        // $events[0]->endDateTime;
-
-        // $event = new Event;
-
-        // $event->name = 'A new event';
-        // $event->startDateTime = Carbon::now();
-        // $event->endDateTime = Carbon::now()->addHour();
-        // $event->save();
-
-        return view('eventsDash', ['events' => $events]);
-        // return view('eventsDash');
+        //
     }
 
     /**

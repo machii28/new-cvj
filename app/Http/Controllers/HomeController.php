@@ -9,7 +9,6 @@ use App\categoryRef;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests;
 use Carbon\Carbon;
-use Faker\Generator as Faker;
 
 class HomeController extends Controller
 {
@@ -30,21 +29,24 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $joinedTable = DB::table('event')
-        ->select('*')
-        ->join('reserve_venue','reserve_venue.reservation_id','=','event.reservation_id')
-        ->get();
+        // return view('admin');
+        if(auth()->user()->userType == 1){
+            return view('adminhome');
+        } else if (auth()->user()->userType == 2){
+            // return view('admin');
+            $joinedTable = DB::table('category_ref')
+            // ->join('category_ref','inventory.category','=','category_ref.id')
+            ->join('inventory','category_ref.category_no','=','inventory.category')
+            ->get();
 
-        // $criticalInventory = DB::table('inventory')
-        // ->select('*')
-        // ->where('quantity', '<=', 'threshold')
-        // ->get();
+            $criticalInventory = DB::select('select * from cvjdb.inventory where quantity <= threshold;');
 
-        $criticalInventory = DB::select('select * from cvjdb.inventory where quantity <= threshold;');
+            $event = DB::table('event')
+            ->join('reserve_venue','event.reservation_id','=','reserve_venue.reservation_id')
+            ->select('*')
+            ->get();
 
-        // dd($criticalInventory);
-
-        return view('inventoryDashboard', ['criticalInventory' => $criticalInventory, 'events' => $joinedTable]);
-        
+            return view('inventoryDashboard',['events' => $event, 'criticalInventory' => $criticalInventory]);
+        }
     }
 }
