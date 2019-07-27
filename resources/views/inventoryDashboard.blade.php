@@ -1,4 +1,4 @@
-@extends('layouts.inventoryApp')
+@extends('layouts.eventApp')
 
 @section('content')
     @include('layouts.headers.cards')
