@@ -69,3 +69,6 @@ Route::resource('calendar', 'Calendar');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+//Rosette's Routes
+Route::resource('bookevent', 'BookEventController');
