@@ -25,21 +25,19 @@
     21 => 'Illuminate\\View\\ViewServiceProvider',
     22 => 'BeyondCode\\DumpServer\\DumpServerServiceProvider',
     23 => 'Fideloper\\Proxy\\TrustedProxyServiceProvider',
-    24 => 'Illuminate\\Notifications\\NexmoChannelServiceProvider',
-    25 => 'Illuminate\\Notifications\\SlackChannelServiceProvider',
-    26 => 'Laravel\\Tinker\\TinkerServiceProvider',
+    24 => 'LaravelFrontendPresets\\ArgonPreset\\ArgonPresetServiceProvider',
+    25 => 'Laravel\\Tinker\\TinkerServiceProvider',
+    26 => 'Collective\\Html\\HtmlServiceProvider',
     27 => 'Carbon\\Laravel\\ServiceProvider',
     28 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
-    29 => 'LaravelFrontendPresets\\ArgonPreset\\ArgonPresetServiceProvider',
+    29 => 'Spatie\\GoogleCalendar\\GoogleCalendarServiceProvider',
     30 => 'Collective\\Html\\HtmlServiceProvider',
-    31 => 'Spatie\\GoogleCalendar\\GoogleCalendarServiceProvider',
-    32 => 'Collective\\Html\\HtmlServiceProvider',
-    33 => 'Milon\\Barcode\\BarcodeServiceProvider',
-    34 => 'Spatie\\GoogleCalendar\\GoogleCalendarServiceProvider',
-    35 => 'App\\Providers\\AppServiceProvider',
-    36 => 'App\\Providers\\AuthServiceProvider',
-    37 => 'App\\Providers\\EventServiceProvider',
-    38 => 'App\\Providers\\RouteServiceProvider',
+    31 => 'Milon\\Barcode\\BarcodeServiceProvider',
+    32 => 'Spatie\\GoogleCalendar\\GoogleCalendarServiceProvider',
+    33 => 'App\\Providers\\AppServiceProvider',
+    34 => 'App\\Providers\\AuthServiceProvider',
+    35 => 'App\\Providers\\EventServiceProvider',
+    36 => 'App\\Providers\\RouteServiceProvider',
   ),
   'eager' => 
   array (
@@ -55,17 +53,15 @@
     9 => 'Illuminate\\View\\ViewServiceProvider',
     10 => 'BeyondCode\\DumpServer\\DumpServerServiceProvider',
     11 => 'Fideloper\\Proxy\\TrustedProxyServiceProvider',
-    12 => 'Illuminate\\Notifications\\NexmoChannelServiceProvider',
-    13 => 'Illuminate\\Notifications\\SlackChannelServiceProvider',
-    14 => 'Carbon\\Laravel\\ServiceProvider',
-    15 => 'LaravelFrontendPresets\\ArgonPreset\\ArgonPresetServiceProvider',
+    12 => 'LaravelFrontendPresets\\ArgonPreset\\ArgonPresetServiceProvider',
+    13 => 'Carbon\\Laravel\\ServiceProvider',
+    14 => 'Spatie\\GoogleCalendar\\GoogleCalendarServiceProvider',
+    15 => 'Milon\\Barcode\\BarcodeServiceProvider',
     16 => 'Spatie\\GoogleCalendar\\GoogleCalendarServiceProvider',
-    17 => 'Milon\\Barcode\\BarcodeServiceProvider',
-    18 => 'Spatie\\GoogleCalendar\\GoogleCalendarServiceProvider',
-    19 => 'App\\Providers\\AppServiceProvider',
-    20 => 'App\\Providers\\AuthServiceProvider',
-    21 => 'App\\Providers\\EventServiceProvider',
-    22 => 'App\\Providers\\RouteServiceProvider',
+    17 => 'App\\Providers\\AppServiceProvider',
+    18 => 'App\\Providers\\AuthServiceProvider',
+    19 => 'App\\Providers\\EventServiceProvider',
+    20 => 'App\\Providers\\RouteServiceProvider',
   ),
   'deferred' => 
   array (
@@ -171,11 +167,11 @@
     'validator' => 'Illuminate\\Validation\\ValidationServiceProvider',
     'validation.presence' => 'Illuminate\\Validation\\ValidationServiceProvider',
     'command.tinker' => 'Laravel\\Tinker\\TinkerServiceProvider',
-    'NunoMaduro\\Collision\\Contracts\\Provider' => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
     'html' => 'Collective\\Html\\HtmlServiceProvider',
     'form' => 'Collective\\Html\\HtmlServiceProvider',
     'Collective\\Html\\HtmlBuilder' => 'Collective\\Html\\HtmlServiceProvider',
     'Collective\\Html\\FormBuilder' => 'Collective\\Html\\HtmlServiceProvider',
+    'NunoMaduro\\Collision\\Contracts\\Provider' => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
   ),
   'when' => 
   array (
@@ -218,10 +214,10 @@
     'Laravel\\Tinker\\TinkerServiceProvider' => 
     array (
     ),
-    'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider' => 
+    'Collective\\Html\\HtmlServiceProvider' => 
     array (
     ),
-    'Collective\\Html\\HtmlServiceProvider' => 
+    'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider' => 
     array (
     ),
   ),

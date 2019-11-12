@@ -86,6 +86,12 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a href="{{ route('suppliers.index') }}" class="nav-link">
+                        <i class="ni ni-archive-2 text-primary"></i>
+                        Suppliers
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="#navbar-dashboards" data-toggle="collapse" role="" aria-expanded="false" aria-controls="">
                         <i class="ni ni-collection text-red"></i>
                         <span class="nav-link-text">Manage Accounts</span>
