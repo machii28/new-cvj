@@ -3,7 +3,7 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <a class="navbar-brand pt-0" href="{{ url('home') }}">
-        <img src="{{ asset('argon') }}/img/brand/cvj.png" class="navbar-brand-img" alt="...">
+        {{-- <img src="{{ asset('argon') }}/img/brand/cvj.png" class="navbar-brand-img" alt="..."> --}}
     </a>
     
     <ul class="nav align-items-center d-md-none">
