@@ -100,4 +100,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 //Rosette's Routes
 Route::resource('bookevent', 'BookEventController');
 
-Route::resource('suppliers', 'SupplierController');
+Route::group(['middleware' => ['auth']], function () {
+    Route::resource('suppliers', 'SupplierController');
+    Route::get('suppliers/{supplier}/state', 'SupplierController@state');
+});

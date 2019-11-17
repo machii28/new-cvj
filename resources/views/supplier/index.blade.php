@@ -10,10 +10,14 @@
             background: #0D5007;
             color: white;
         }
-
         .suppliers-list {
             height: 500px;
-            overflow: scroll;
+            overflow-y: scroll;
+        }
+
+        #contacts {
+            height: 400px;
+            overflow-y: scroll;
         }
     </style>
 @endsection
@@ -26,14 +30,21 @@
             <div class="col-xl-12">
                 <div class="card shadow">
                     <div class="card-header">
-                        <h3 class="mb-0">Suppliers</h3>
+                        <div class="row">
+                            <div class="col">
+                                <h3 class="mb-0">Suppliers</h3>
+                            </div>
+                            <div class="col text-right">
+                                <button class="btn btn-sm btn-success">Add New Supplier</button>
+                            </div>
+                        </div>
                     </div>
                     <div class="card-body">
                         <div class="row">
                             <div class="col-4">
                                 <div class="card shadow">
                                     <div class="table-responsive suppliers-list">
-                                        <table class="table" #id="suppliers">
+                                        <table class="table" id="suppliers">
                                             <thead class="table-light table-flush">
                                                 <tr class="text-center">
                                                     <th scope="col">List of Suppliers</th>
@@ -45,7 +56,14 @@
                                                         <td>
                                                             <div class="row">
                                                                 <div class="col">
-                                                                    {{ $supplier->name }}
+                                                                    <p class="mb-0 supplier-name" data-id="{{ $supplier->supplier_id }}">
+                                                                        {{ $supplier->name }}
+                                                                    </p>
+                                                                </div>
+                                                                <div class="col text-right">
+                                                                    @if (!$supplier->is_enabled)
+                                                                        <i class="fa fa-ban is-enabled" data-id="{{ $supplier->supplier_id }}"></i>
+                                                                    @endif
                                                                 </div>
                                                             </div>
                                                         </td>
@@ -56,6 +74,7 @@
                                     </div>
                                 </div>
                             </div>
+                            
                             <div class="col-8">
                                 <div class="card shadow">
                                     <div class="card-header">
@@ -64,8 +83,10 @@
                                                 <h4 class="mb-0">Supplier Info</h4>
                                             </div>
                                             <div class="col text-right">
-                                                <button class="btn btn-sm btn-success">Edit</button>
-                                                <button class="btn btn-sm btn-danger">Disable</button>
+                                                <button class="btn btn-sm btn-success edit">Edit</button>
+                                                <button style="display: none;" class="btn btn-sm btn-primary save">Save</button>
+                                                <button class="btn btn-sm btn-danger disable">Disable</button>
+                                                <button style="display: none;" class="btn btn-sm btn-success enable">Enable</button>
                                             </div>
                                         </div>
                                     </div>
@@ -73,6 +94,7 @@
                                         <div class="table-responsive">
                                             <table class="table align-items-center table-bordered">
                                                 <tbody>
+                                                    <input type="hidden" name="supplier-id" id="supplierId" value="">
                                                     <tr>
                                                         <th scope="col">
                                                             <h5 class="mb-0">Name: </h5>
@@ -131,6 +153,14 @@
                                                     </tr>
                                                     <tr>
                                                         <th>
+                                                            <h5 class="mb-0">Payment Terms</h5>
+                                                        </th>
+                                                        <td>
+                                                            <input type="text" name="supplier-payment-terms" id="supplierPaymentTerms" class="form-control" disabled>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>
                                                             <h5 class="mb-0">Type: </h5>
                                                         </th>
                                                         <td>
@@ -151,15 +181,45 @@
                                     </div>
                                 </div>
 
-                                <div class="card shadow">
+                                <div class="card shadow" style="margin-top: 20px">
                                     <div class="card-header">
-                                        <h4 class="mb-0">
-                                            Contact Persons
-                                        </h4>
-                                        <div class="card-body" id="contacts">
-                                            
+                                        <div class="col">
+                                            <h4 class="mb-0">
+                                                Contact Persons
+                                            </h4>
+                                        </div>
+                                        <div class="col text-right">
+                                        
                                         </div>
                                     </div> 
+                                    <div class="card-body" id="contacts">
+                                        
+                                    </div>
+                                </div>
+
+                                <div class="card shadow" style="margin-top: 20px">
+                                    <div class="card-header">
+                                        <div class="col">
+                                            <h4 class="mb-0">
+                                                Supplier Item
+                                            </h4>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Item</th>
+                                                        <th>Status</th>
+                                                        <th>Actions</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="supplier-items">
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -168,84 +228,7 @@
             </div>
         </div>
     </div>
+    @include('new-supplier')
 @stop
 
-@section('js')
-    <script>
-        $('#add-supplier').on('click', function() {
-            alert('test'); 
-        });
-
-        $(document).on('click', 'tr.supplier', function() {
-            var selected = $(this).hasClass('active');
-
-            $('tr.supplier').removeClass('active');
-
-            if(!selected)
-                $(this).addClass('active');
-            
-            let id = $(this).data('id');
-
-            getSupplier(id);
-        });
-
-        function getSupplier(supplier) {
-            $.ajax({
-                url: '/suppliers/' + supplier,
-                type: 'GET',
-                success: function(data) {
-                    $('#supplierName').val(data.name);
-                    $('#supplierEmail').val(data.email);
-                    $('#supplierLandline').val(data.landline);
-                    $('#supplierFax').val(data.fax);
-                    $('#supplierMobile').val(data.mobile);
-                    $('#supplierCompanyAddress').val(data.company_address);
-                    $('#supplierBillingAddress').val(data.billing_address);
-                    $('#supplierType').val(data.supplier_type);
-                    $('#supplierRemarks').val(data.remarks);
-
-                    let contacts = '';
-
-                    $('#contacts').empty();
-
-                    data.contacts.forEach(contact => {
-                        contacts += '<div class="card shadow">' +
-                            '<div class="card-header">' +
-                                '<h3 class="mb-0">'+ contact.name +'</h3>' +
-                            '</div>' +
-                            '<div class="card-body">' +
-                                '<div class="table-responsive">' +
-                                    '<table class="table">' +
-                                        '<tbody>' +
-                                            '<tr>' +
-                                                '<th>Mobile: </th>' +
-                                                '<td>' + contact.mobile + '</td>' +
-                                            '</tr>' +
-                                            '<tr>' +
-                                                '<th>Landline: </th>' +
-                                                '<td>' + contact.landline  + '</td>' +
-                                            '</tr>' +
-                                            '<tr>' +
-                                                '<th>Email: </th>' +
-                                                '<td>'+ contact.email +'</td>' +
-                                            '</tr>' +
-                                            '<tr>' +
-                                                '<th>Fax: </th>' +
-                                                '<td>'+ contact.fax +'</td>' +
-                                            '</tr>' +
-                                        '</tbody>' +
-                                    '</table>' +
-                                '</div>' +
-                            '</div>' +
-                        '</div>'
-                    });
-
-                    $('#contacts').append(contacts);
-                },
-                eeror: function(error) {
-                    alert('Opps! Something went wrong please refresh the website');
-                }
-            });
-        }
-    </script>
-@stop
+@include('supplier.js')

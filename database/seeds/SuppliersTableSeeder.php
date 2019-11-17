@@ -36,18 +36,11 @@ class SuppliersTableSeeder extends Seeder
             ]);
 
             $supplier->save();
+        }
 
-            $contactPerson = new ContactPerson([
-                'name' => $faker->name,
-                'email' => $faker->email,
-                'landline' => $faker->phoneNumber,
-                'fax' => $faker->phoneNumber,
-                'mobile' => $faker->phoneNumber,
-            ]);
-                
-            $contactPerson->supplier()->associate($supplier);
-            $contactPerson->save();
-            
+        $suppliers = Supplier::all();
+
+        foreach($suppliers as $supplier) {
             for ($i=0; $i < 3; $i++) { 
                 $contactPerson = new ContactPerson([
                     'name' => $faker->name,
@@ -55,12 +48,13 @@ class SuppliersTableSeeder extends Seeder
                     'landline' => $faker->phoneNumber,
                     'fax' => $faker->phoneNumber,
                     'mobile' => $faker->phoneNumber,
-                    'is_primary' => false
                 ]);
                     
                 $contactPerson->supplier()->associate($supplier);
                 $contactPerson->save();
             }
         }
+
+        dd(count($suppliers));
     }
 }

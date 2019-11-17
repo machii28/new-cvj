@@ -21,11 +21,17 @@ class Supplier extends Model
         'company_address',
         'billing_address',
         'supplier_type',
-        'remarks'
+        'remarks',
+        'is_enabled'
     ];
 
     public function contacts()
     {
         return $this->hasMany(ContactPerson::class, 'supplier_id', 'supplier_id');
+    }
+
+    public function items()
+    {
+        return $this->hasMany(SupplierItem::class, 'supplier_id', 'supplier_id');
     }
 }
