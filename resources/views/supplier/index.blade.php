@@ -228,7 +228,6 @@
             </div>
         </div>
     </div>
-    @include('new-supplier')
 @stop
 
 @include('supplier.js')
