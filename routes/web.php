@@ -103,4 +103,6 @@ Route::resource('bookevent', 'BookEventController');
 Route::group(['middleware' => ['auth']], function () {
     Route::resource('suppliers', 'SupplierController');
     Route::get('suppliers/{supplier}/state', 'SupplierController@state');
+    Route::post('suppliers/{supplier}/contact-person', 'SupplierController@addContact');
+    Route::post('suppliers/{supplier}/supplier-item', 'SupplierController@addItem');
 });

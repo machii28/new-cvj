@@ -35,7 +35,7 @@
                                 <h3 class="mb-0">Suppliers</h3>
                             </div>
                             <div class="col text-right">
-                                <button class="btn btn-sm btn-success">Add New Supplier</button>
+                                <button id="addSupplier" class="btn btn-sm btn-success">Add New Supplier</button>
                             </div>
                         </div>
                     </div>
@@ -189,7 +189,7 @@
                                             </h4>
                                         </div>
                                         <div class="col text-right">
-                                        
+                                            <button id="addContact" class="btn btn-sm btn-success" disabled>Add Contact Person</button>
                                         </div>
                                     </div> 
                                     <div class="card-body" id="contacts">
@@ -204,6 +204,9 @@
                                                 Supplier Item
                                             </h4>
                                         </div>
+                                        <div class="col text-right">
+                                            <button id="addItem" class="btn btn-sm btn-success">Add Item</button>
+                                        </div>
                                     </div>
                                     <div class="card-body">
                                         <div class="table-responsive">
@@ -211,8 +214,6 @@
                                                 <thead>
                                                     <tr>
                                                         <th>Item</th>
-                                                        <th>Status</th>
-                                                        <th>Actions</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody id="supplier-items">
@@ -228,6 +229,7 @@
             </div>
         </div>
     </div>
+    @include('supplier.new-supplier')
 @stop
 
 @include('supplier.js')

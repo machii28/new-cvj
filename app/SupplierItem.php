@@ -10,7 +10,7 @@ class SupplierItem extends Model
      * The table associated with the model.
      *
      * @var string
-     */
+    */
     protected $table = 'supplier_items';
 
     /**
