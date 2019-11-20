@@ -48,7 +48,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="{{ route('suppliers.index') }}" class="nav-link">
+                <a href="{{ route('purchase-orders.index') }}" class="nav-link">
                     <i class="fa fa-money-bill-alt text-primary"></i>
                     Purchase Order
                 </a>
