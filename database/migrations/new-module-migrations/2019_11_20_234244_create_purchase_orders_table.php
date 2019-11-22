@@ -28,6 +28,7 @@ class CreatePurchaseOrdersTable extends Migration
             $table->string('item');
             $table->float('rate');
             $table->bigInteger('quantity');
+            $table->bigInteger('total');
             $table->bigInteger('purchase_order_id');
             $table->timestamps();
         });

@@ -20,7 +20,7 @@ class PurchaseOrder extends Model
      * @var array
      */
     protected $fillable = [
-        'reference_number',ww
+        'reference_number',
         'billing_address',
         'expected_delivery_date',
         'shipment_preferences'
