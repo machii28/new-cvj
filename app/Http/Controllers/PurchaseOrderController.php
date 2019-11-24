@@ -6,6 +6,8 @@ use App\Supplier;
 use App\PurchaseOrder;
 use App\PurchaseOrderItem;
 use Illuminate\Http\Request;
+use App\Mail\PurchaseOrderMail;
+use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\PurchaseOrder\AddRequest;
 
 class PurchaseOrderController extends Controller
@@ -20,17 +22,16 @@ class PurchaseOrderController extends Controller
 
     public function store(AddRequest $request)
     {
-        dd($request->validated());
-
         $purchaseOrder = new PurchaseOrder($request->validated());
         $purchaseOrder->supplier()->associate($request->supplier_id);
         $purchaseOrder->save();
         
         foreach($request->get('items', []) as $item) {
             $item = new PurchaseOrderItem([
-                'item' => $item->item,
-                'rate' => $item->rate,
-                'quantity' => $item->quantity
+                'item' => $item['name'],
+                'rate' => $item['rate'],
+                'quantity' => $item['quantity'],
+                'total' => $item['total']
             ]);
 
             $item->purchaseOrder()->associate($purchaseOrder);
@@ -38,5 +39,16 @@ class PurchaseOrderController extends Controller
         }
 
         return response()->json($purchaseOrder);
+    }
+
+    public function email(PurchaseOrder $order)
+    {
+        $supplier = $order->supplier()->first();
+        
+        Mail::to($supplier->email)->send(new PurchaseOrderMail($order));
+
+        return response()->json([
+            'message' => 'Email Sent'
+        ]);
     }
 }

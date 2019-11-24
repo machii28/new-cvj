@@ -28,17 +28,19 @@
                                             <th>Action</th>
                                         </tr>
                                     </thead>
+                                    <tbody>
+                                        @foreach ($purchaseOrders as $order)
+                                            <tr class="text-center">
+                                                <td>{{ $order->reference_number }}</td>
+                                                <td>{{ $order->expected_delivery_date }}</td>
+                                                <td>{{ $order->total() }}</td>
+                                                <th>
+                                                    <button data-id="{{ $order->id }}" class="btn btn-sm btn-primary email">Email Purchase Order </button>
+                                                </th>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
                                 </table>
-                                <tbody>
-                                    @foreach ($purchaseOrders as $order)
-                                        <tr>
-                                            <td>{{ $order->reference_number }}</td>
-                                            <td>{{ $order->expected_delivery_date }}</td>
-                                            <td></td>
-                                            <th></th>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
                             </div>
                         </div>
                     </div>
@@ -62,7 +64,7 @@
                         </div>
                         <select name="supplier" id="supplierID" class="form-control">
                             @foreach ($suppliers as $supplier)
-                                <option value="{{ $supplier->id }}">{{ $supplier->name }}</option>
+                                <option value="{{ $supplier->supplier_id }}">{{ $supplier->name }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -71,7 +73,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text">Delivery To</span>
                         </div>
-                        <textarea name="delivery-address" id="deliveryAddress" cols="30" rows="10" class="form-control"></textarea>
+                        <textarea name="delivery-address" id="deliveryAddress" rows="2" class="form-control"></textarea>
                     </div>
 
                     <div class="input-group input-group-alternative mb-4">
@@ -134,6 +136,26 @@
 
 @section('js')
     <script>
+        let inputItem = [];
+
+        $('.email').on('click', function() {
+            let button = $(this);
+
+            button.attr('disabled', 'disabled');
+            button.text('Sending Email');
+
+            $.ajax({
+                url: '/email/' + button.data('id'),
+                type: 'GET',
+                success: function(data) {
+                    button.text('Email Sent');
+                    button.removeClass('btn-primary');
+                    button.addClass('btn-success');
+                },
+                error: function(error) {}
+            }); 
+        });
+
         $('#addPO').on('click', function() {
             $('#modalPO').modal('show');
         });
@@ -146,6 +168,13 @@
                 '<td class="item-total">'+ ($('#itemRate').val() * $('#itemQuantity').val()) +'</td>' +
             '</td>';
 
+            inputItem.push({
+                name: $('#itemName').val(),
+                rate: $('#itemRate').val(),
+                quantity: $('#itemQuantity').val(),
+                total: $('#itemRate').val() * $('#itemQuantity').val()
+            });
+
             $('#POItem').prepend(item);
 
             $('#itemName').val('');
@@ -154,33 +183,38 @@
         });
         
         $('#supplierID').on('change', function() {
-            console.log($(this).find(':selected').attr('value'));
+            $.ajax({
+                url: '/suppliers/' + $(this).find('option:selected').val(),
+                type: 'GET',
+                success: function(data) {
+                    $('#deliveryAddress').val(data.billing_address);
+                },
+                error: function(error) {}
+            }); 
         });
 
         $('#savePO').on('click', function() {
-            let inputItem = [];
-
-            $('#POitem').find('tr').each(function (key, value) {
-                $(this).find('td').each(function(key, value) {
-                    inputItem.push({
-                        item:'',
-                        rate:'',
-                        quantity:'',
-                        total:''
-                    });
-                });
-            })
-            
             let input = {
                 'reference_number': $('#referenceNumber').val(),
                 'billing_address': $('#deliveryAddress').val(),
                 'expected_delivery_date': $('#expectedDelDate').val(),
-                'shipment_preference': $('#shipmentPreference').val(),
+                'shipment_preferences': $('#shipmentPreference').val(),
                 'supplier_id': $('#supplierID').find(':selected').val(),
-                'items': inputItem
+                'items': inputItem,
+                '_token': '{!! csrf_token() !!}'
             };
 
-            console.log(input);
+            $.ajax({
+                url: '/purchase-orders',
+                type: 'POST',
+                data: input,
+                success: function(data) {
+                    location.reload();
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
         });
     </script>
 @stop

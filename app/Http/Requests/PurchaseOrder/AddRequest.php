@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\PurchaseOrder;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class AddRequest extends FormRequest
@@ -29,7 +30,7 @@ class AddRequest extends FormRequest
             'expected_delivery_date' => ['required', 'date'],
             'shipment_preferences' => ['required'],
             'items' => ['required', 'array'],
-            'supplier_id' => ['required', Rule::exists('suppliers', 'supplier_id')],
+            'supplier_id' => ['required', Rule::exists('supplier', 'supplier_id')],
         ];
     }
 }

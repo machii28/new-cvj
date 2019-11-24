@@ -28,11 +28,23 @@ class PurchaseOrder extends Model
 
     public function supplier()
     {
-        return $this->belongsTo(Supplier::class);
+        return $this->belongsTo(Supplier::class, 'supplier_id', 'supplier_id');
     }
 
     public function items()
     {
         return $this->hasMany(PurchaseOrderItem::class);
+    }
+
+    public function total()
+    {
+        $total = 0;
+        $items = $this->items()->get();
+
+        foreach($items as $item) {
+            $total += $item->total;
+        }
+        
+        return $total;
     }
 }

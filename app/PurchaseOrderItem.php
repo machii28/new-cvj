@@ -2,7 +2,7 @@
 
 namespace App;
 
-use App\Supplier;
+use App\PurchaseOrder;
 use Illuminate\Database\Eloquent\Model;
 
 class PurchaseOrderItem extends Model
@@ -22,11 +22,12 @@ class PurchaseOrderItem extends Model
     protected $fillable = [
         'item',
         'rate',
-        'quantity'
+        'quantity',
+        'total'
     ];
 
-    protected function purchaseOrder()
+    public function purchaseOrder()
     {
-        return $this->belongsTo(Supplier::class);
+        return $this->belongsTo(PurchaseOrder::class);
     }
 }

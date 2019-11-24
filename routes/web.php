@@ -89,7 +89,7 @@ Route::resource('food', 'FoodController');
 Route::resource('users', 'ManageUsersController');
 Route::resource('employee', 'EmployeeController');
 Route::resource('eventreport', 'EventLogisticsReportController');
-Route::resource('returnInventory', 'ReturnInventoryContoller');
+Route::resource('returnInventory', 'ReturnInventoryController');
 Route::resource('manageuser', 'ManageUsersController');
 
 Route::get('admin/routes', 'AdminController@admin')->middleware('admin');
@@ -106,5 +106,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('suppliers/{supplier}/contact-person', 'SupplierController@addContact');
     Route::post('suppliers/{supplier}/supplier-item', 'SupplierController@addItem');
 
+    Route::get('email/{order}', 'PurchaseOrderController@email');
     Route::resource('purchase-orders', 'PurchaseOrderController');
+    Route::resource('reservations', 'ReservationController');
 });

@@ -75,6 +75,7 @@
             $('#supplierCompanyAddress').removeAttr('disabled');
             $('#supplierBillingAddress').removeAttr('disabled');
             $('#supplierType').removeAttr('disabled');
+            $('#supplierPaymentTerms').removeAttr('disabled');
             $('#supplierRemarks').removeAttr('disabled');
 
             $('.save').show();
