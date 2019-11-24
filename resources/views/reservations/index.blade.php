@@ -18,32 +18,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-12">
-                                <table class="table">
-                                    <thead class="table-light table-flush">
-                                        <tr>
-                                            <th>Date</th>
-                                            <th>Venue</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-                                        <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-                                        <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                <div id="calendar"></div>
                             </div>
                         </div>
                     </div>
