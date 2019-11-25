@@ -108,5 +108,6 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('email/{order}', 'PurchaseOrderController@email');
     Route::resource('purchase-orders', 'PurchaseOrderController');
+    Route::get('events', 'ReservationController@getEvent');
     Route::resource('reservations', 'ReservationController');
 });
