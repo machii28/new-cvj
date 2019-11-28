@@ -20,9 +20,9 @@ class ReservationController extends Controller
         $reservation = Reservation::where('event_date', $request->event_date)
             ->where('event_place', $request->event_place)
             ->where('time', $request->time)
-            ->get();
+            ->first();
 
-        if ($reservation === []) {
+        if ($reservation === null) {
             $reservation = new Reservation($request->validated());
             $reservation->save();
     
@@ -30,7 +30,7 @@ class ReservationController extends Controller
         }
 
         return response()->json([
-
+            'message' => 'Events is now reserved'
         ], 422);
     }
 

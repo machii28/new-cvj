@@ -51,4 +51,16 @@ class PurchaseOrderController extends Controller
             'message' => 'Email Sent'
         ]);
     }
+
+    public function receive(PurchaseOrder $order)
+    {
+        $order->update([
+            'status' => 'received'
+        ]);
+        $order->save();
+
+        return response()->json([
+            'message' => 'Success'
+        ]);
+    }
 }

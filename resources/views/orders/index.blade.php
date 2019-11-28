@@ -26,6 +26,7 @@
                                             <th>Expected Delivery Date</th>
                                             <th>Total</th>
                                             <th>Item Quantity</th>
+                                            <th>Status</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -36,8 +37,18 @@
                                                 <td>{{ $order->expected_delivery_date }}</td>
                                                 <td>{{ $order->total() }}</td>
                                                 <td>{{ $order->totalQuantity() }}</td>
+                                                <td>
+                                                    @if ($order->status === 'pending')
+                                                        <span for="badge badge-warning">Pending</span>
+                                                    @else
+                                                        <span for="badge badge-success">Recieve</span>
+                                                    @endif
+                                                </td>
                                                 <th>
                                                     <button data-id="{{ $order->id }}" class="btn btn-sm btn-primary email">Email Purchase Order </button>
+                                                    @if ($order->status === 'pending')
+                                                        <button data-id="{{ $order->id }}" class="btn btn-sm btn-success receive">Received</button>
+                                                    @endif
                                                 </th>
                                             </tr>
                                         @endforeach
@@ -156,6 +167,21 @@
                 },
                 error: function(error) {}
             }); 
+        });
+
+        $('.receive').on('click', function() {
+            let button = $(this);
+
+            $.ajax({
+                url: '/receive/' + button.data('id'),
+                type: 'GET',
+                success: function(data) {
+                    location.reload();
+                },
+                error: function(error) {
+
+                }
+            });
         });
 
         $('#addPO').on('click', function() {

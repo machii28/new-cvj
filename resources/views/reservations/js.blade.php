@@ -59,7 +59,7 @@
                     $('#addEvent').modal('hide');
                 },
                 error: function(error) {
-                    console.log(error);
+                    alert('Event Place and Time is now reserved');
                 }
             });
         });
@@ -81,7 +81,7 @@
                     calendar();
                 },
                 error: function(error) {
-
+                    
                 }
             });
         });

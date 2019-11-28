@@ -23,7 +23,8 @@ class PurchaseOrder extends Model
         'reference_number',
         'billing_address',
         'expected_delivery_date',
-        'shipment_preferences'
+        'shipment_preferences',
+        'status'
     ];
 
     public function supplier()

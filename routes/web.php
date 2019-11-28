@@ -107,6 +107,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('suppliers/{supplier}/supplier-item', 'SupplierController@addItem');
 
     Route::get('email/{order}', 'PurchaseOrderController@email');
+    Route::get('receive/{order}', 'PurchaseOrderController@receive');
     Route::resource('purchase-orders', 'PurchaseOrderController');
     Route::get('events', 'ReservationController@getEvent');
     Route::resource('reservations', 'ReservationController');
