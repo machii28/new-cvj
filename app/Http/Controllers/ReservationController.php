@@ -17,10 +17,21 @@ class ReservationController extends Controller
 
     public function store(AddRequest $request)
     {
-        $reservation = new Reservation($request->validated());
-        $reservation->save();
+        $reservation = Reservation::where('event_date', $request->event_date)
+            ->where('event_place', $request->event_place)
+            ->where('time', $request->time)
+            ->get();
 
-        return response()->json($reservation);
+        if ($reservation === []) {
+            $reservation = new Reservation($request->validated());
+            $reservation->save();
+    
+            return response()->json($reservation);
+        }
+
+        return response()->json([
+
+        ], 422);
     }
 
     public function getEvent(Request $request)

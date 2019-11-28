@@ -25,6 +25,7 @@
                                             <th>Reference Number</th>
                                             <th>Expected Delivery Date</th>
                                             <th>Total</th>
+                                            <th>Item Quantity</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -34,6 +35,7 @@
                                                 <td>{{ $order->reference_number }}</td>
                                                 <td>{{ $order->expected_delivery_date }}</td>
                                                 <td>{{ $order->total() }}</td>
+                                                <td>{{ $order->totalQuantity() }}</td>
                                                 <th>
                                                     <button data-id="{{ $order->id }}" class="btn btn-sm btn-primary email">Email Purchase Order </button>
                                                 </th>

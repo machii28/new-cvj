@@ -47,4 +47,16 @@ class PurchaseOrder extends Model
         
         return $total;
     }
+
+    public function totalQuantity()
+    {
+        $total = 0;
+        $items = $this->items()->get();
+
+        foreach($items as $item) {
+            $total += $item->quantity;
+        }
+
+        return $total;
+    }
 }
