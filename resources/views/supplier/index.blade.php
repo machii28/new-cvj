@@ -103,7 +103,7 @@
                                                             <input class="form-control" type="text" name="supplier-name" id="supplierName" value="" disabled>
                                                         </td>
                                                     </tr>
-                                                    <tr>
+                                                    <tr style="display: none;">
                                                         <th>
                                                             <h5 class="mb-0">Email: </h5>
                                                         </th>
@@ -111,7 +111,7 @@
                                                             <input type="text" name="supplier-email" id="supplierEmail" class="form-control" disabled>
                                                         </td>
                                                     </tr>
-                                                    <tr>
+                                                    <tr style="display: none;">
                                                         <th>
                                                             <h5 class="mb-0">Landline: </h5>
                                                         </th>
@@ -119,7 +119,7 @@
                                                             <input type="text" name="supplier-landline" id="supplierLandline" class="form-control" disabled>
                                                         </td>
                                                     </tr>
-                                                    <tr>
+                                                    <tr style="display: none;">
                                                         <th>
                                                             <h5 class="mb-0">Fax: </h5>
                                                         </th>
@@ -127,7 +127,7 @@
                                                             <input type="text" name="supplier-fax" id="supplierFax" class="form-control" disabled>
                                                         </td>
                                                     </tr>
-                                                    <tr>
+                                                    <tr style="display: none;">
                                                         <th>
                                                             <h5 class="mb-0">Mobile: </h5>
                                                         </th>
@@ -214,6 +214,7 @@
                                                 <thead>
                                                     <tr>
                                                         <th>Item</th>
+                                                        <th>Rate</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody id="supplier-items">

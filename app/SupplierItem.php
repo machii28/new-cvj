@@ -20,6 +20,7 @@ class SupplierItem extends Model
      */
     protected $fillable = [
         'item',
+        'rate',
         'is_active'
     ];
 

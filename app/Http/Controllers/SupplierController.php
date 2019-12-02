@@ -72,7 +72,8 @@ class SupplierController extends Controller
         $supplier = Supplier::where('supplier_id', $supplier)->first();
 
         $item = new SupplierItem([
-            'item' => $request->item
+            'item' => $request->item,
+            'rate' => $request->rate,
         ]);
         $item->supplier()->associate($supplier);
         $item->save();

@@ -241,6 +241,7 @@
                     data.items.forEach(item => {
                         items += '<tr>' +
                             '<td>'+ item.item +'</td>' +
+                            '<td>'+ item.rate +'</td>' +
                         '</tr>';
                     });
 
@@ -266,12 +267,14 @@
                 type: 'POST',
                 data: {
                     item: $('#supplierItem').val(),
+                    rate: $('#supplierRate').val(),
                     _token: '{!! csrf_token() !!}'
                 },
                 success: function(data) {
                     $('#supplier-items').append(
                         '<tr>' +
                             '<td>' + data.item + '</td>' +
+                            '<td>' + data.rate + '</td>' +
                         '</tr>'
                     );
 
